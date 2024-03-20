@@ -1,0 +1,50 @@
+[
+    {
+        "accessToken": "05a636c1-9e85-437e-8ecb-823bcb1c82958146911452121710836218528",
+        "user": {
+            "name": "Shohijahon",
+            "firstName": "Musinkulov",
+            "email": "shohijahonmusinkulov@gmail.com",
+            "password": "shohijahon",
+            "gender": "male",
+            "gameSettings": [],
+            "userId": 1
+        }
+    },
+    {
+        "accessToken": "dfa34681-c9d6-4375-b3ce-9bfc24731915229117564221710840552586",
+        "user": {
+            "name": "Sardor",
+            "firstName": "Quvondiqov",
+            "email": "sardorquvondiqov@gmail.com",
+            "password": "sardor",
+            "gender": "male",
+            "gameSettings": [],
+            "userId": 2
+        }
+    },
+    {
+        "accessToken": "5659cc32-159d-4ef1-b48f-500d5f8719f715821411985221710841954589",
+        "user": {
+            "name": "Ramazon",
+            "firstName": "Uzoqov",
+            "email": "ramazonuzoqov@gmail.com",
+            "password": "ramazon",
+            "gender": "male",
+            "gameSettings": [],
+            "userId": 3
+        }
+    },
+    {
+        "accessToken": "86c4d1de-8ce2-49c9-a1ac-7cc6b4012e44213525286311710940416313",
+        "user": {
+            "name": "leo",
+            "firstName": "leo",
+            "email": "leo@gmail.com",
+            "password": "leo",
+            "gender": "male",
+            "gameSettings": [],
+            "userId": 4
+        }
+    }
+]
