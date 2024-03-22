@@ -3,7 +3,7 @@ import { PORT, host } from "./lib/network.js";
 import { Express } from "./lib/router.js";
 import { readFile } from "./lib/readFile.js";
 import { authController } from "./controller/auth.js";
-
+import { roadsController } from "./controller/roads.js";
 const app = new Express();
 
 app.staticPath(path.join(process.cwd()))
@@ -13,7 +13,7 @@ app.request("/register", authController.POST.REGISTER, "POST");
 app.request("/login", authController.POST.LOGIN, "POST");
 
 app.request("/users/:userId", authController.DELETE, "DELETE");
-
+app.request("/roads", roadsController.GET)
 app.request("/users", async (req, res) => {
     const users = Array.from(await readFile("users", true)).map(({user}) => user);
     const searchParams = req.searchParams;

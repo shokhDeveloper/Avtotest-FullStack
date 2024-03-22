@@ -38,3 +38,4 @@ const handleSub = async (evt: SubmitEvent): Promise<void> => {
   }
 };
 elForm.addEventListener("submit", handleSub);
+handleToCheckTokenUser()

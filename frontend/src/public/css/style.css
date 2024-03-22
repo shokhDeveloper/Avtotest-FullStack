@@ -394,6 +394,9 @@ select option{
 .active{
     background: rgba(0, 0, 0, 0.667);
 }
+.hide{
+    opacity: 0;
+}
 .animation-error-response{
     animation-name: animationErrorResponse;
     animation-duration: 0.2s;

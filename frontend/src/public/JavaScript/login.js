@@ -36,3 +36,4 @@ const handleSubmit = async (evt) => {
     }
 };
 elFormLogin.addEventListener("submit", handleSubmit);
+handleToCheckTokenUser();

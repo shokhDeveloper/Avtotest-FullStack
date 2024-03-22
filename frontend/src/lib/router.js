@@ -10,8 +10,7 @@ const Server = (req, res) => {
   const SERVER_URL_COSTRUCTOR = new URL(req.url, `http://${req.headers.host}`);
   const reqUrl = SERVER_URL_COSTRUCTOR.pathname.toLowerCase();
   const reqMethod = req.method.toUpperCase();
-  console.log(reqUrl);
-
+  console.log(reqUrl)
   res.render = async function (fileName) {
     res.setHeader("Content-type", "text/html");
     let file = await await fs.readFile(
@@ -39,9 +38,13 @@ async function renderFile(reqUrl, req, res) {
       ".html": "text/html",
       ".css": "text/css",
       ".jpg": "image/jpeg",
+      ".gif": "image/gif",
+      ".png": "image/png",
+      ".mp3": "audio/mpeg"
     };
     if (contentTypes[extName]) {
       const contentType = { "Content-Type": contentTypes[extName] };
+      console.log(contentType)
       let type = fileStructure.existsSync(path.join(staticPath, reqUrl));
       if (type) {
         res.writeHead(200, contentType);

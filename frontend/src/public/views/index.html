@@ -15,7 +15,7 @@
   <template class="js-roady-symb-temp">
     <li class="game__item js-roady-symbol-item">
       <img class="js-result-image" src="./images/signs/asosiy_tugash.gif" width="150" height="200" alt="">
-      <div class="game__question-result hide-result">
+      <div class="game__question-result hide-result js-question-result">
         <img class="game__question-result-image " src="./images/checkmark.gif" width="30" alt="">
         <audio id="gameAudio">
           <source src="./audio/correct-answer.mp3"  type="audio/mp3">
@@ -57,7 +57,7 @@
           <form class="js-settings-form" id="avtotest"></form>
           <div class="settings__box">
             <h4>O'yin darajasini tanlang</h4>
-            <select form="avtotest" id="type">
+            <select form="avtotest" name="type" id="type">
               <option value="" hidden >Daraja</option>
               <option value="easy">Oson</option>
               <option value="normal">Normal</option>
@@ -66,7 +66,7 @@
           </div>
           <div class="settings__box">
             <h4>O'yin vaqtini tanlang</h4>
-            <select form="avtotest" id="date">
+            <select form="avtotest" name="date" id="date">
               <option value="" hidden>Vaqt</option>
               <option value="3">3 Min</option>
               <option value="5">5 Min</option>
@@ -90,7 +90,7 @@
           </div>
           <div class="game__box">
             <div class="game__question-box">
-              <p class="game__question-info js-question-info">Salom Leo Messi</p>
+              <p class="game__question-info js-question-info">Yuklanmoqda ...</p>
             </div>
             <ul class="game__list js-game-list">
                

@@ -37,3 +37,4 @@ const handleSubmit = async (evt:SubmitEvent):Promise<void> => {
     }
 }
 elFormLogin.addEventListener("submit", handleSubmit)
+handleToCheckTokenUser()
