@@ -8,6 +8,12 @@ const elRoadTemp = (document.querySelector(".js-roady-symb-temp") as HTMLTemplat
 const elGameList = document.querySelector(".js-game-list") as HTMLUListElement;
 const elQuestionText = document.querySelector(".js-question-info") as HTMLParagraphElement;
 const elScoreInfo = document.querySelector(".js-score-info") as HTMLHeadElement;
+const elLastSection = document.querySelector(".js-last-section") as HTMLElement;
+const elLastScoreCount = document.querySelector(".js-last-score-count") as HTMLSpanElement;
+const elLastErrorCount = document.querySelector(".js-last-error-count") as HTMLSpanElement;
+const elLastTitle = document.querySelector(".js-last-title") as HTMLHeadingElement;
+const elRestartBtn = document.querySelector(".js-restart-btn") as HTMLButtonElement;
+const user:User = getItem("avtotest-user") ? JSON.parse(getItem("avtotest-user")!): null;
 const token = getItem("avtotest-token");
 const gameSettingsMenejement:GameSettingsMenejement = {
     start: "START_GAME",
@@ -144,9 +150,11 @@ function handleGetRandomNumbers(arr: Roads[]){
 }
 let idx = 0;
 const handleCreateQuestion = ():void => {
-    if(randomNumArr[idx]){
-        console.log(res[randomNumArr[idx]], randomNumArr[idx])
+    if(randomNumArr[idx] == 0 || randomNumArr[idx]){
+        console.log(res[randomNumArr[idx]], idx, randomNumArr)
         elQuestionText.textContent = res[randomNumArr[idx]].symbol_title;
+    }else{
+        handleGameEndFn(false)
     }
 }
 
@@ -216,22 +224,20 @@ function handleToCheckAnswer (id:MainGenericsType<string>, type: boolean):void {
             }else{
                 handleErrorResponse(elQuestionBox, elLi)
             }
-        }else{
-            console.log("XATO")
         }
     })
 }
 const handleRoadClick = (evt:Event):void => {
     const elTarget = evt.target as HTMLLIElement;
     const id:MainGenericsType<string> = elTarget.dataset.id
-    if(userError < maxError){
+    if(userError <= maxError){
         if(Number(id) || +(id ? id: NaN) == 0){
             const defRoadySymb:MainGenericsType<Roads> = (roads as Roads[]).find((road: Roads) => road.id == Number(id))
             const resRoadySymb:MainGenericsType<Roads> = (roads as Roads[]).find((road: Roads) => road.symbol_title == elQuestionText.textContent)
             if(defRoadySymb?.id == resRoadySymb?.id){
-                idx ++ 
                 score += 1
                 handleToCheckAnswer(id, true)
+                idx ++ 
                 handleCreateQuestion();
             }else{
                 handleToCheckAnswer(id, false);
@@ -240,10 +246,41 @@ const handleRoadClick = (evt:Event):void => {
         }
         elScoreInfo.textContent = "Score: " + score
     }else{
-        document.write("TUGADI")
+        handleGameEndFn(true)
     }
-
+}
+function handleGameEndFn(type:boolean):void{
+    if(type){
+        elLastTitle.textContent = "GAME OVER !";
+        elLastScoreCount.textContent = `Score = ${score}`;
+        elLastErrorCount.textContent = `Error = ${userError}`;
+        elLastSection.classList.add("js-ower")
+        handleResRequest(score, userError)
+    }else{
+        elLastSection.classList.add("js-win")
+    }
+    handleResRequest(score, userError)
+    handleShowSection(elLastSection, elGameSection )
 }
 elGameList.addEventListener("click", handleRoadClick)
+const handleReStartGame = ():void => {
+    removeItem("avtotest-settings")
+    window.location.reload();
+}
+elRestartBtn.addEventListener("click", handleReStartGame)
+async function handleResRequest (score: number, userError:number):Promise<void> {
+    let gameRes:GameResultInterface = {
+        type: gameSettings.degree,
+        count: userError,
+        date: new Date().toLocaleDateString()
+    }
+    if(userError >= maxError){        
+        await request(`/users/${user.userId}/los`, "POST", gameRes)
+    }else{
+        gameRes.count = score
+        await request(`/users/${user.userId}/win`, "POST", gameRes)     
+    }
+}
 handleToCheckToken()
 handleToCheckGameSettings()
+ request(`/users/${user.userId}/los`, "POST", {type: "easy", count: 20, date: "2023"}).then(response => console.log(response))

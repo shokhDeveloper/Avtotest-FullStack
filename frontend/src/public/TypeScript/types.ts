@@ -5,7 +5,8 @@ interface User {
     firstName: string,
     email: string,
     gender: string, 
-    password: string
+    password: string,
+    userId?: number
 }
 interface ServerResponse {
     message: string,
@@ -47,5 +48,10 @@ interface Roads {
     symbol_img: string
 }
 
+interface GameResultInterface {
+    type: string,
+    count: number,
+    date: number | string,
+}
 type ServerResponseType = ServerResponse | void | Roads[]
 type MainGenericsType<T> = T | undefined

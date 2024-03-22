@@ -45,7 +45,37 @@ const Server = (req, res) => {
       accessToken: createToken(),
       user: {
         ...reqBody,
-        gameSettings: [],
+        gameSettings: {
+            gameCount: 0, 
+            los:  {
+                easy: {
+                    count: 0,
+                    date: null
+                },
+                normal: {
+                    count: 0,
+                    date: null
+                },
+                hard: {
+                    count: 0,
+                    date: null
+                }
+            }, 
+            win:  {
+                easy: {
+                    count: 0,
+                    date: null
+                },
+                normal: {
+                    count: 0,
+                    date: null
+                },
+                hard: {
+                    count: 0,
+                    date: null
+                }
+            }
+        },
         userId: users.length ? users[users.length - 1].user.userId + 1 : 1,
       },
     };
@@ -70,26 +100,18 @@ const Server = (req, res) => {
   }
   const params = {};
   for (let key in handler) {
-    if ("path" in handler[key]) {
-      if (isMatchedWithRegex(handler[key].path, reqUrl)) {
-        let keys = key
-          .split("/:")
-          .filter((e) => e !== "")
-          .slice(1);
-        let values = reqUrl
-          .split("/")
-          .filter((e) => e !== "")
-          .slice(1);
-        keys.map((key, index) => (params[key] = values[index]));
-        req.params = params;
-        if (typeof handler[key][reqMethod] == "function") {
-          return handler[key][reqMethod](req, res);
-        } else {
-          return res.end("XATOLIK");
+      if ("path" in handler[key]) {
+          if (isMatchedWithRegex(handler[key].path, reqUrl)) {
+              let keys = key.split("/:").filter((e) => e !== "").slice(1);
+              let values = reqUrl.split("/").filter((e) => e !== "").slice(1);
+              keys.map((key, index) => (params[key] = values[index]));
+              req.params = params;
+              if (typeof handler[key][reqMethod] == "function") {
+                  return handler[key][reqMethod](req, res);
+                }
+            }
         }
-      }
     }
-  }
 
   if (handler[reqUrl]) {
     return handler[reqUrl][reqMethod](req, res);
@@ -99,8 +121,7 @@ const Server = (req, res) => {
 };
 function isMatchedWithRegex(regex, path) {
   path += path[path.length - 1] == "/" ? "" : "/";
-  console.log(regex, path, regex.test(path));
-  return regex.test(path);
+  return path.match(regex)?.length ? true: false;
 }
 function RegexGenerator(reqUrl) {
   let str = "";

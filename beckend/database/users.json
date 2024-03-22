@@ -7,7 +7,37 @@
             "email": "shohijahonmusinkulov@gmail.com",
             "password": "shohijahon",
             "gender": "male",
-            "gameSettings": [],
+            "gameSettings": {
+                "gameCount": 16,
+                "los": {
+                    "easy": {
+                        "count": 272,
+                        "date": "2023 Update game"
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                },
+                "win": {
+                    "easy": {
+                        "count": 21,
+                        "date": "22.03.2024 Update game"
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                }
+            },
             "userId": 1
         }
     },
@@ -19,7 +49,37 @@
             "email": "sardorquvondiqov@gmail.com",
             "password": "sardor",
             "gender": "male",
-            "gameSettings": [],
+            "gameSettings": {
+                "gameCount": 10,
+                "los": {
+                    "easy": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                },
+                "win": {
+                    "easy": {
+                        "count": 10,
+                        "date": "2022 Update game"
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                }
+            },
             "userId": 2
         }
     },
@@ -31,7 +91,37 @@
             "email": "ramazonuzoqov@gmail.com",
             "password": "ramazon",
             "gender": "male",
-            "gameSettings": [],
+            "gameSettings": {
+                "gameCount": 0,
+                "los": {
+                    "easy": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                },
+                "win": {
+                    "easy": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                }
+            },
             "userId": 3
         }
     },
@@ -43,8 +133,80 @@
             "email": "leo@gmail.com",
             "password": "leo",
             "gender": "male",
-            "gameSettings": [],
-            "userId": 4
+            "userId": 4,
+            "gameSettings": {
+                "gameCount": 7,
+                "los": {
+                    "easy": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                },
+                "win": {
+                    "easy": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                }
+            }
+        }
+    },
+    {
+        "accessToken": "3b0cb61b-0ae2-4979-b9c6-afcaeb2d752086136461111711114564220",
+        "user": {
+            "name": "Ramazonsasas",
+            "firstName": "Uzoqovsasa",
+            "email": "ramazonuzoqosasasv@gmail.com",
+            "password": "ramazosasasn",
+            "gender": "malsesasa",
+            "gameSettings": {
+                "gameCount": 0,
+                "los": {
+                    "easy": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                },
+                "win": {
+                    "easy": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "normal": {
+                        "count": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "count": 0,
+                        "date": null
+                    }
+                }
+            },
+            "userId": 5
         }
     }
 ]

@@ -9,6 +9,12 @@ const elRoadTemp = document.querySelector(".js-roady-symb-temp").content;
 const elGameList = document.querySelector(".js-game-list");
 const elQuestionText = document.querySelector(".js-question-info");
 const elScoreInfo = document.querySelector(".js-score-info");
+const elLastSection = document.querySelector(".js-last-section");
+const elLastScoreCount = document.querySelector(".js-last-score-count");
+const elLastErrorCount = document.querySelector(".js-last-error-count");
+const elLastTitle = document.querySelector(".js-last-title");
+const elRestartBtn = document.querySelector(".js-restart-btn");
+const user = getItem("avtotest-user") ? JSON.parse(getItem("avtotest-user")) : null;
 const token = getItem("avtotest-token");
 const gameSettingsMenejement = {
     start: "START_GAME",
@@ -144,9 +150,12 @@ function handleGetRandomNumbers(arr) {
 }
 let idx = 0;
 const handleCreateQuestion = () => {
-    if (randomNumArr[idx]) {
-        console.log(res[randomNumArr[idx]], randomNumArr[idx]);
+    if (randomNumArr[idx] == 0 || randomNumArr[idx]) {
+        console.log(res[randomNumArr[idx]], idx, randomNumArr);
         elQuestionText.textContent = res[randomNumArr[idx]].symbol_title;
+    }
+    else {
+        handleGameEndFn(false);
     }
 };
 function handleCreateObj(arr, roads) {
@@ -216,22 +225,19 @@ function handleToCheckAnswer(id, type) {
                 handleErrorResponse(elQuestionBox, elLi);
             }
         }
-        else {
-            console.log("XATO");
-        }
     });
 }
 const handleRoadClick = (evt) => {
     const elTarget = evt.target;
     const id = elTarget.dataset.id;
-    if (userError < maxError) {
+    if (userError <= maxError) {
         if (Number(id) || +(id ? id : NaN) == 0) {
             const defRoadySymb = roads.find((road) => road.id == Number(id));
             const resRoadySymb = roads.find((road) => road.symbol_title == elQuestionText.textContent);
             if ((defRoadySymb === null || defRoadySymb === void 0 ? void 0 : defRoadySymb.id) == (resRoadySymb === null || resRoadySymb === void 0 ? void 0 : resRoadySymb.id)) {
-                idx++;
                 score += 1;
                 handleToCheckAnswer(id, true);
+                idx++;
                 handleCreateQuestion();
             }
             else {
@@ -242,9 +248,43 @@ const handleRoadClick = (evt) => {
         elScoreInfo.textContent = "Score: " + score;
     }
     else {
-        document.write("TUGADI");
+        handleGameEndFn(true);
     }
 };
+function handleGameEndFn(type) {
+    if (type) {
+        elLastTitle.textContent = "GAME OVER !";
+        elLastScoreCount.textContent = `Score = ${score}`;
+        elLastErrorCount.textContent = `Error = ${userError}`;
+        elLastSection.classList.add("js-ower");
+        handleResRequest(score, userError);
+    }
+    else {
+        elLastSection.classList.add("js-win");
+    }
+    handleResRequest(score, userError);
+    handleShowSection(elLastSection, elGameSection);
+}
 elGameList.addEventListener("click", handleRoadClick);
+const handleReStartGame = () => {
+    removeItem("avtotest-settings");
+    window.location.reload();
+};
+elRestartBtn.addEventListener("click", handleReStartGame);
+async function handleResRequest(score, userError) {
+    let gameRes = {
+        type: gameSettings.degree,
+        count: userError,
+        date: new Date().toLocaleDateString()
+    };
+    if (userError >= maxError) {
+        await request(`/users/${user.userId}/los`, "POST", gameRes);
+    }
+    else {
+        gameRes.count = score;
+        await request(`/users/${user.userId}/win`, "POST", gameRes);
+    }
+}
 handleToCheckToken();
 handleToCheckGameSettings();
+request(`/users/${user.userId}/los`, "POST", { type: "easy", count: 20, date: "2023" }).then(response => console.log(response));

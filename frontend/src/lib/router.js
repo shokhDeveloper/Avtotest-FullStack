@@ -40,7 +40,8 @@ async function renderFile(reqUrl, req, res) {
       ".jpg": "image/jpeg",
       ".gif": "image/gif",
       ".png": "image/png",
-      ".mp3": "audio/mpeg"
+      ".mp3": "audio/mpeg",
+      ".svg": "image/svg+xml"
     };
     if (contentTypes[extName]) {
       const contentType = { "Content-Type": contentTypes[extName] };
