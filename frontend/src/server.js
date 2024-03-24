@@ -13,6 +13,8 @@ app.request("/", (_, res) => res.render());
 
 app.request("/login", (_, res) => res.render("login.html"))
 
+app.request("/statistic", (_, res) => res.render("statistic.html"))
+
 app.listen(PORT, () => {
   console.log(`Frontend Server is running ${host}`);
 });

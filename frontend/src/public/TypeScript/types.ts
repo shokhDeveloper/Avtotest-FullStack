@@ -1,12 +1,30 @@
 type genericsType<T> = T | null;
 
+interface GameSettingsByServer {
+    userError: number,
+    score: number,
+    dateLose: number,
+    date: string
+}
+interface GameTypeByServer {
+    [userKey:string]: string | any;
+    easy: GameSettingsByServer,
+    normal: GameSettingsByServer,
+    hard: GameSettingsByServer
+}
+interface GameSettingsServer {
+    gameCount: number,
+    los: GameTypeByServer
+    win:GameTypeByServer
+}
 interface User {
     name: string,
     firstName: string,
     email: string,
     gender: string, 
     password: string,
-    userId?: number
+    userId?: number,
+    gameSettings?: GameSettingsServer
 }
 interface ServerResponse {
     message: string,
@@ -50,8 +68,17 @@ interface Roads {
 
 interface GameResultInterface {
     type: string,
-    count: number,
+    score: string | number,
+    userError: number,
     date: number | string,
+    dateLose?: number | boolean 
 }
 type ServerResponseType = ServerResponse | void | Roads[]
 type MainGenericsType<T> = T | undefined
+interface UserFilter {
+    name: string,
+    gameCount: number,
+    score: number,
+    error: number,
+    userId: number
+}

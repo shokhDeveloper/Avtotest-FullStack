@@ -378,7 +378,7 @@ select option{
 .game__item{
     background: rgb(166, 164, 164);
     padding: 0.5rem;
-    position: relative;
+    position: relative !important;
 }
 .game__question-result{
     position: absolute;
@@ -442,4 +442,48 @@ select option{
 }
 .js-win{
     background-image: url("../images/Frame3.svg");
+}
+.fixed{
+    pointer-events: none !important;
+}
+.start-statistic__box{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.5rem;
+}
+.start-statistic__box a{
+    display: block;
+}
+.statistic{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0px 0px 700px 700px rgba(0, 0, 0, 0.688);
+}
+.statistic-inner{
+    max-width: 900px;
+}
+.statistic-inner .form-input:focus ~ .bar:before, .form-input:focus ~ .bar:after {
+    min-width: 565px;
+} 
+
+.statistic table{
+    width: 100%;
+    margin: 0;
+    color: #000;
+    border-collapse: collapse;
+    background: #fff;
+}
+table th,  table td{
+    padding: 1rem;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.statistic-inner__table-box{
+    min-height: 380px;
+    border: 1px solid red;
+    overflow-y: scroll;
 }

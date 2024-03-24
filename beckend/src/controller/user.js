@@ -42,14 +42,17 @@ export const userController = {
             los: {
               ...user.gameSettings.los,
               [gameData.type]: {
-                count: (user.gameSettings.los[gameData.type].count +=
-                  gameData.count),
-                date: gameData.date + " Update game",
-              },
+                userError: user.gameSettings.los[gameData.type].userError || user.gameSettings.los[gameData.type].userError == 0 ? user.gameSettings.los[gameData.type].userError  += gameData.userError: gameData.userError,
+              score: user.gameSettings.los[gameData.type].score || user.gameSettings.los[gameData.type].score == 0 ? user.gameSettings.los[gameData.type].score  += gameData.score: gameData.score, 
+              dateLose: user.gameSettings.los[gameData.type].dateLose || user.gameSettings.los[gameData.type].dateLose == 0 ? user.gameSettings.los[gameData.type].dateLose  += gameData.dateLose: user.gameSettings.los[gameData.type].dateLose,
+              date: gameData.date + " Update Game."
+              },  
             },
           };
           res.addToDatabase("users", users);
+          console.log(JSON.stringify(user, null, 4), gameData)
           res.setJson(200, { message: "Success created game data", user: gameData, statusCode: 200 })
+
         }else if (params.gameType == "win") {
           user.gameSettings = {
             ...user.gameSettings,
@@ -57,9 +60,10 @@ export const userController = {
             win: {
               ...user.gameSettings.win,
               [gameData.type]: {
-                count: (user.gameSettings.win[gameData.type].count +=
-                  gameData.count),
-                date: gameData.date + " Update game",
+                userError: user.gameSettings.win[gameData.type].userError || user.gameSettings.win[gameData.type].userError == 0 ? user.gameSettings.win[gameData.type].userError  += gameData.userError: gameData.userError,
+              score: user.gameSettings.win[gameData.type].score || user.gameSettings.win[gameData.type].score == 0 ? user.gameSettings.win[gameData.type].score  += gameData.score: gameData.score, 
+              dateLose: user.gameSettings.win[gameData.type].dateLose || user.gameSettings.win[gameData.type].dateLose == 0 ? user.gameSettings.win[gameData.type].dateLose  += gameData.dateLose: user.gameSettings.win[gameData.type].dateLose,
+              date: gameData.date + " Update Game."
               },
             },
           };

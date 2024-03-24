@@ -8,7 +8,6 @@ const Server = (req, res) => {
   const SERVER_URL_COSTRUCTOR = new URL(req.url, `http://${req.headers.host}`);
   const reqUrl = SERVER_URL_COSTRUCTOR.pathname.toLowerCase();
   const reqMethod = req.method.toUpperCase();
-  console.log(reqUrl)
   let searchParams = SERVER_URL_COSTRUCTOR.searchParams.entries();
   searchParams = Object.fromEntries(searchParams);
   req.searchParams = Object.keys(searchParams)?.length ? searchParams : null;
@@ -49,30 +48,42 @@ const Server = (req, res) => {
             gameCount: 0, 
             los:  {
                 easy: {
-                    count: 0,
-                    date: null
+                  userError: 0,
+                  score: 0,
+                  dateLose: 0,
+                  date: null
                 },
                 normal: {
-                    count: 0,
-                    date: null
+                  userError: 0,
+                  score: 0,
+                  dateLose: 0,
+                  date: null
                 },
                 hard: {
-                    count: 0,
-                    date: null
+                  userError: 0,
+                  score: 0,
+                  dateLose: 0,
+                  date: null
                 }
             }, 
             win:  {
                 easy: {
-                    count: 0,
-                    date: null
+                  userError: 0,
+                  score: 0,
+                  dateLose: 0,
+                  date: null
                 },
                 normal: {
-                    count: 0,
-                    date: null
+                  userError: 0,
+                  score: 0,
+                  dateLose: 0,
+                  date: null
                 },
                 hard: {
-                    count: 0,
-                    date: null
+                  userError: 0,
+                  score: 0,
+                  dateLose: 0,
+                  date: null
                 }
             }
         },

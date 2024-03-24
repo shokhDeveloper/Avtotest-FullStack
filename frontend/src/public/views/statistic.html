@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Avtotest</title>
+</head>
+<body>
+
+    <template class="js-user-temp">
+        <tr>
+            <td class="js-user-number">1</td>
+            <td class="js-user-name">Shohijahon</td>
+            <td class="js-user-win">10</td>
+            <th class="js-user-los">1</th>
+            <th class="js-user-gameCount">1</th>
+        </tr>
+    </template>
+    
+    <main>
+        <section class="statistic">
+            <div class="container">
+                <div class="statistic-inner">
+                    <div class="statistic-search">
+                        <div class="group">      
+                            <input autocomplete="off" class="form-input__name js-search-input form-input border-transparent" type="text"  aria-label="Ismingizni kiriting ... " name="name" id="name" minlength="3" maxlength="20">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="name__label">Isim</label>
+                        </div>
+                    </div>
+                    <div class="statistic-inner__table-box">
+                        <table border="1">
+                            <thead>
+                                <th>NO</th>
+                                <th>Ism</th>
+                                <th>To'g'ri javoblar</th>
+                                <th>Xato javoblar</th>
+                                <th>O'yinlar soni</th>
+                            </thead>
+                            <tbody class="js-table-body">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+  <script src="../JavaScript/types.js"></script>
+  <script src="../JavaScript/utils.js"></script>
+  <script src="../JavaScript/request.js"></script>
+  <script src="../JavaScript/statistic.js"></script>
+</body>
+</html>

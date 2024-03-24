@@ -8,32 +8,44 @@
             "password": "shohijahon",
             "gender": "male",
             "gameSettings": {
-                "gameCount": 16,
+                "gameCount": 3,
                 "los": {
                     "easy": {
-                        "count": 272,
-                        "date": "2023 Update game"
+                        "userError": 10,
+                        "score": 3,
+                        "dateLose": 2,
+                        "date": "24.03.2024, 14:20:29 Update Game."
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     }
                 },
                 "win": {
                     "easy": {
-                        "count": 21,
-                        "date": "22.03.2024 Update game"
+                        "userError": 0,
+                        "score": 10,
+                        "dateLose": null,
+                        "date": "24.03.2024, 14:10:05 Update Game."
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     }
                 }
@@ -50,32 +62,44 @@
             "password": "sardor",
             "gender": "male",
             "gameSettings": {
-                "gameCount": 10,
+                "gameCount": 0,
                 "los": {
                     "easy": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     }
                 },
                 "win": {
                     "easy": {
-                        "count": 10,
-                        "date": "2022 Update game"
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": null
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     }
                 }
@@ -95,29 +119,41 @@
                 "gameCount": 0,
                 "los": {
                     "easy": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "dateLose": 0,
+                        "score": 0,
                         "date": null
                     }
                 },
                 "win": {
                     "easy": {
-                        "count": 0,
+                        "userError": 0,
+                        "dateLose": 0,
+                        "score": 0,
                         "date": null
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "dateLose": 0,
+                        "score": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "dateLose": 0,
+                        "score": 0,
                         "date": null
                     }
                 }
@@ -135,32 +171,44 @@
             "gender": "male",
             "userId": 4,
             "gameSettings": {
-                "gameCount": 7,
+                "gameCount": 0,
                 "los": {
                     "easy": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     }
                 },
                 "win": {
                     "easy": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     }
                 }
@@ -179,34 +227,100 @@
                 "gameCount": 0,
                 "los": {
                     "easy": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     }
                 },
                 "win": {
                     "easy": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "normal": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     },
                     "hard": {
-                        "count": 0,
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
                         "date": null
                     }
                 }
             },
             "userId": 5
+        }
+    },
+    {
+        "accessToken": "626b177c-1745-4703-98b9-ab591876e50914102133886221711197581328",
+        "user": {
+            "name": "Elyor",
+            "firstName": "Khujamov",
+            "email": "elyorkhujamov4@gmail.com",
+            "password": "elyor0812",
+            "gender": "male",
+            "gameSettings": {
+                "gameCount": 7,
+                "los": {
+                    "easy": {
+                        "userError": 6,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": "24.03.2024, 12:00:58"
+                    },
+                    "normal": {
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": null
+                    }
+                },
+                "win": {
+                    "easy": {
+                        "userError": 2,
+                        "score": 26,
+                        "dateLose": 0,
+                        "date": "24.03.2024, 12:19:57 Update Game."
+                    },
+                    "normal": {
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": null
+                    }
+                }
+            },
+            "userId": 6
         }
     }
 ]

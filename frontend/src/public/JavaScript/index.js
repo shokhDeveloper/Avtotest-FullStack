@@ -14,6 +14,8 @@ const elLastScoreCount = document.querySelector(".js-last-score-count");
 const elLastErrorCount = document.querySelector(".js-last-error-count");
 const elLastTitle = document.querySelector(".js-last-title");
 const elRestartBtn = document.querySelector(".js-restart-btn");
+const elMinute = document.querySelector(".js-date-minutes");
+const elSecond = document.querySelector(".js-date-seconds");
 const user = getItem("avtotest-user") ? JSON.parse(getItem("avtotest-user")) : null;
 const token = getItem("avtotest-token");
 const gameSettingsMenejement = {
@@ -26,7 +28,7 @@ const gameSettingsMenejement = {
 const gameMenejementObject = {
     easy: {
         type: "easy",
-        length: 21
+        length: 5
     },
     normal: {
         type: "normal",
@@ -45,6 +47,8 @@ let res;
 let score = 0;
 let maxError = 5;
 let userError = 0;
+let minute = 0;
+let second = 5;
 elScoreInfo.textContent = "Score: " + score;
 const handleToCheckToken = () => {
     if (!token) {
@@ -107,6 +111,7 @@ const handleSettingsSubmit = (evt) => {
         setItem("avtotest-settings", settings);
         gameSettings = getItem("avtotest-settings") ? JSON.parse(getItem("avtotest-settings")) : null;
         gameTypeLength = getItem("avtotest-settings") ? gameMenejementObject[JSON.parse(getItem("avtotest-settings")).degree].length : null;
+        handleCreateDate();
         handleToCheckGameSettings();
         handleShowSection(elGameSection, elSettingsSection);
         handleStartGameSettings();
@@ -181,31 +186,22 @@ function handleRenderRoads(arr) {
     });
     elGameList.appendChild(docFragmentRoadSymbol);
 }
-const handleTrueResponse = (elQuestionBox, item) => {
-    try {
-        elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.classList.add("show-result");
-        const audio = elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.querySelector("#gameAudio");
-        (elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.querySelector("img")).src = "./images/checkmark.gif";
-        audio.play();
-        setTimeout(() => {
-            item === null || item === void 0 ? void 0 : item.classList.add("hide");
-        }, 2000);
-    }
-    catch (error) {
-        console.log(error);
-    }
-};
 const handleErrorResponse = (elQuestionBox, item) => {
-    var _a;
+    var _a, _b;
     try {
-        elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.classList.add("show-result");
-        (elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.querySelector("img")).src = "./images/error.png";
-        let gameAudio = elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.querySelector("#gameErrorAudio");
-        gameAudio.play();
-        (_a = item.classList) === null || _a === void 0 ? void 0 : _a.add("animation-error-response");
-        setTimeout(() => {
-            elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.classList.remove("show-result");
-        }, 1000);
+        if (!((_a = item.getAttribute("class")) === null || _a === void 0 ? void 0 : _a.includes("true"))) {
+            userError += 1;
+            elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.classList.add("show-result");
+            (elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.querySelector("img")).src = "./images/error.png";
+            let gameAudio = elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.querySelector("#gameErrorAudio");
+            gameAudio.play();
+            (_b = item.classList) === null || _b === void 0 ? void 0 : _b.add("animation-error-response");
+            setTimeout(() => {
+                var _a;
+                elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.classList.remove("show-result");
+                (_a = item.classList) === null || _a === void 0 ? void 0 : _a.remove("animation-error-response");
+            }, 1000);
+        }
     }
     catch (error) {
         console.log(error);
@@ -230,7 +226,7 @@ function handleToCheckAnswer(id, type) {
 const handleRoadClick = (evt) => {
     const elTarget = evt.target;
     const id = elTarget.dataset.id;
-    if (userError <= maxError) {
+    if (userError < maxError) {
         if (Number(id) || +(id ? id : NaN) == 0) {
             const defRoadySymb = roads.find((road) => road.id == Number(id));
             const resRoadySymb = roads.find((road) => road.symbol_title == elQuestionText.textContent);
@@ -242,7 +238,6 @@ const handleRoadClick = (evt) => {
             }
             else {
                 handleToCheckAnswer(id, false);
-                userError += 1;
             }
         }
         elScoreInfo.textContent = "Score: " + score;
@@ -251,18 +246,20 @@ const handleRoadClick = (evt) => {
         handleGameEndFn(true);
     }
 };
-function handleGameEndFn(type) {
+function handleGameEndFn(type, dateType) {
     if (type) {
         elLastTitle.textContent = "GAME OVER !";
         elLastScoreCount.textContent = `Score = ${score}`;
         elLastErrorCount.textContent = `Error = ${userError}`;
+        elLastSection.classList.remove("js-win");
         elLastSection.classList.add("js-ower");
-        handleResRequest(score, userError);
+        handleResRequest(score, userError, type, dateType);
     }
     else {
+        elLastSection.classList.remove("js-ower");
         elLastSection.classList.add("js-win");
+        handleResRequest(score, userError, type);
     }
-    handleResRequest(score, userError);
     handleShowSection(elLastSection, elGameSection);
 }
 elGameList.addEventListener("click", handleRoadClick);
@@ -271,20 +268,69 @@ const handleReStartGame = () => {
     window.location.reload();
 };
 elRestartBtn.addEventListener("click", handleReStartGame);
-async function handleResRequest(score, userError) {
+async function handleResRequest(score, userError, dateType, dateEndTye) {
     let gameRes = {
         type: gameSettings.degree,
-        count: userError,
-        date: new Date().toLocaleDateString()
+        userError,
+        score,
+        dateLose: dateEndTye ? dateEndTye : false,
+        date: new Date().toLocaleString()
     };
-    if (userError >= maxError) {
-        await request(`/users/${user.userId}/los`, "POST", gameRes);
+    let res;
+    if (!dateType) {
+        res = await request(`/users/${user.userId}/win`, "POST", gameRes);
     }
-    else {
-        gameRes.count = score;
-        await request(`/users/${user.userId}/win`, "POST", gameRes);
+    if (userError > maxError || dateType) {
+        res = await request(`/users/${user.userId}/los`, "POST", gameRes);
+    }
+    console.log(res, dateType, gameRes);
+}
+function handleTrueResponse(elQuestionBox, item) {
+    try {
+        elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.classList.add("show-result");
+        const audio = elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.querySelector("#gameAudio");
+        (elQuestionBox === null || elQuestionBox === void 0 ? void 0 : elQuestionBox.querySelector("img")).src = "./images/checkmark.gif";
+        item.classList.add("js-true-res");
+        let type = audio.play();
+        console.log(type, audio);
+        setTimeout(() => {
+            item === null || item === void 0 ? void 0 : item.classList.add("hide");
+        }, 2000);
+    }
+    catch (error) {
+        console.log(error);
     }
 }
+const handleDate = (date) => {
+    minute = 1;
+    let dateInterval = setInterval(() => {
+        if (minute >= 0) {
+            if (second > 0) {
+                second--;
+            }
+            else {
+                if (minute > 0) {
+                    second = 5;
+                    minute -= 1;
+                }
+                else {
+                    clearInterval(dateInterval);
+                    second = 0;
+                    minute = 0;
+                    handleGameEndFn(true, true);
+                    console.log("tugadi");
+                }
+            }
+        }
+        elMinute.textContent = minute.toString().padStart(2, "0");
+        elSecond.textContent = second.toString().padStart(2, "0");
+    }, 1000);
+};
+const handleCreateDate = () => {
+    if (gameSettings && gameSettings.date) {
+        handleDate(gameSettings.date);
+    }
+};
+handleCreateDate();
 handleToCheckToken();
 handleToCheckGameSettings();
-request(`/users/${user.userId}/los`, "POST", { type: "easy", count: 20, date: "2023" }).then(response => console.log(response));
