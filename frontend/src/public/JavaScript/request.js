@@ -1,5 +1,5 @@
 "use strict";
-const BECKEND_SERVER = "http://192.168.1.104:1000";
+const BECKEND_SERVER = "http://192.168.1.22:1000";
 const simpleQueries = ["GET", "DELETE"];
 const request = async (path, reqMethod, reqBody) => {
     const req = await fetch(BECKEND_SERVER + path, !simpleQueries.includes(reqMethod) ? {

@@ -322,5 +322,59 @@
             },
             "userId": 6
         }
+    },
+    {
+        "accessToken": "77e6c003-c709-4e39-baa2-0c0537bf31e8196556231221719839135624",
+        "user": {
+            "name": "Ogabek",
+            "firstName": "Norkulov",
+            "email": "ogabek@gmail.com",
+            "password": "ogabek",
+            "gender": "male",
+            "gameSettings": {
+                "gameCount": 3,
+                "los": {
+                    "easy": {
+                        "userError": 3,
+                        "score": 4,
+                        "dateLose": 2,
+                        "date": "01.07.2024, 18:06:32 Update Game."
+                    },
+                    "normal": {
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": null
+                    }
+                },
+                "win": {
+                    "easy": {
+                        "userError": 2,
+                        "score": 5,
+                        "dateLose": 0,
+                        "date": "01.07.2024, 18:07:37 Update Game."
+                    },
+                    "normal": {
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": null
+                    },
+                    "hard": {
+                        "userError": 0,
+                        "score": 0,
+                        "dateLose": 0,
+                        "date": null
+                    }
+                }
+            },
+            "userId": 7
+        }
     }
 ]

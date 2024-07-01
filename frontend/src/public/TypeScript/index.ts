@@ -47,7 +47,7 @@ let score:number = 0;
 let maxError:number = 5;
 let userError: number = 0;
 let minute:number = 0;
-let second:number = 5;
+let second:number = 60;
 elScoreInfo.textContent = "Score: " + score;
 const handleToCheckToken = () => {
     if(!token){
